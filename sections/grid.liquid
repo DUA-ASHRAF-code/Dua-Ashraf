@@ -1,0 +1,221 @@
+{{ 'grid.css' | asset_url | stylesheet_tag }}
+{{ 'popup.css' | asset_url | stylesheet_tag }}
+
+<p class="content-column__title">
+    {{ section.settings.tissovisonin }}
+</p>
+
+<div class="content-column__grid __dhiwise">
+  <div class="stack-plus" data-product-id="orange-wide-leg">
+    <img
+      src="{{ 'orange.PNG' | asset_url }}"  
+      alt="Orange Wide Leg"
+      width="432"
+      height="444"
+      class="stack-plus__image" />
+  </div>
+  
+  <div class="stack-plus" data-product-id="tailored-jacket">
+    <img
+      src="{{ 'jacket.PNG' | asset_url }}"  
+      alt="Tailored Jacket"
+      width="432"
+      height="444"
+      class="stack-plus__image" />
+  </div>
+  
+  <div class="stack-plus" data-product-id="accordion-pleated-dress">
+    <img
+      src="{{ 'dress.PNG' | asset_url }}"  
+      alt="Accordion Pleated Dress"
+      width="432"
+      height="444"
+      class="stack-plus__image" />
+  </div>
+
+  <div class="stack-plus" data-product-id="green-trench-coat">
+    <img
+      src="{{ 'coat.PNG' | asset_url }}"  
+      alt="Green Trench Coat"
+      width="432"
+      height="444"
+      class="stack-plus__image" />
+  </div>
+
+  <div class="stack-plus" data-product-id="tennis-blue-t-shirt">
+    <img
+      src="{{ 'tshirt.PNG' | asset_url }}"  
+      alt="Tennis Blue T-Shirt"
+      width="432"
+      height="444"
+      class="stack-plus__image" />
+  </div>
+
+  <div class="stack-plus" data-product-id="long-sleeve-tennis-top">
+    <img
+      src="{{ 'top.PNG' | asset_url }}"  
+      alt="Long Sleeve Tennis Top"
+      width="432"
+      height="444"
+      class="stack-plus__image" />
+  </div>
+</div>
+
+<!-- Popup Modal Structure -->
+<div id="product-popup" class="popup-overlay" style="display:none;">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span>
+    <img id="popup-image" src="" alt="Product Image" />
+    <h2 id="popup-product-name"></h2>
+    <p id="popup-product-price"></p>
+    <p id="popup-product-description"></p>
+    
+    <div id="popup-variants">
+      <!-- Color variants -->
+    </div>
+    
+    <label for="size-select">Select Size:</label>
+    <select id="size-select">
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select>
+    
+    <button id="add-to-cart" data-product-id="" class="popup-btn">ADD TO CART</button>
+  </div>
+</div>
+
+{% javascript %}
+document.addEventListener('DOMContentLoaded', function() {
+  const gridItems = document.querySelectorAll('.stack-plus');
+  const popup = document.getElementById('product-popup');
+  const closeBtn = document.querySelector('.close-btn');
+
+  gridItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const productId = this.getAttribute('data-product-id');
+      const productImage = this.querySelector('img').src; // Get the image of the clicked product
+
+      // Dynamically define the product and its variants
+      const products = {
+        "orange-wide-leg": {
+          id: 'orange-wide-leg',
+          title: 'Orange Wide Leg',
+          price: '9800.00',
+          description: 'This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief..',
+          variants: [
+            { id: 1, option1: 'Black' },
+            { id: 2, option1: 'White' }
+          ],
+          images: [productImage]
+        },
+        "tailored-jacket": {
+          id: 'tailored-jacket',
+          title: 'Tailored Jacket',
+          price: '9800.00',
+          description: 'This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief.',
+          variants: [
+            { id: 1, option1: 'Blue' },
+            { id: 2, option1: 'Black' }
+          ],
+          images: [productImage]
+        },
+        "accordion-pleated-dress": {
+          id: 'accordion-pleated-dress',
+          title: 'Accordion Pleated Dress',
+          price: '9800.00',
+          description: 'This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief.',
+          variants: [
+            { id: 1, option1: 'Grey' },
+            { id: 2, option1: 'Red' }
+          ],
+          images: [productImage]
+        },
+        "green-trench-coat": {
+          id: 'green-trench-coat',
+          title: 'Green Trench Coat',
+          price: '9800.00',
+          description: 'This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief.',
+          variants: [
+            { id: 1, option1: 'White' },
+            { id: 2, option1: 'Black' }
+          ],
+          images: [productImage]
+        },
+        "tennis-blue-t-shirt": {
+          id: 'tennis-blue-t-shirt',
+          title: 'Tennis Blue T-Shirt',
+          price: '9800.00',
+          description: 'This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief.',
+          variants: [
+            { id: 1, option1: 'Grey' },
+            { id: 2, option1: 'Black' }
+          ],
+          images: [productImage]
+        },
+        "long-sleeve-tennis-top": {
+          id: 'long-sleeve-tennis-top',
+          title: 'Long Sleeve Tennis Top',
+          price: '9800.00',
+          description: 'This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief.',
+          variants: [
+            { id: 1, option1: 'Blue' },
+            { id: 2, option1: 'Black' }
+          ],
+          images: [productImage]
+        }
+      };
+
+      const product = products[productId];
+
+      // Update popup content with product details
+      document.getElementById('popup-image').src = product.images[0];
+      document.getElementById('popup-product-name').innerText = product.title;
+      document.getElementById('popup-product-price').innerText = product.price;
+      document.getElementById('popup-product-description').innerText = product.description;
+
+      const variantsContainer = document.getElementById('popup-variants');
+      variantsContainer.innerHTML = '';
+      product.variants.forEach(variant => {
+        const variantButton = document.createElement('button');
+        variantButton.innerText = variant.option1;
+        variantButton.classList.add('variant-color'); // Optional: add class for styling
+        variantButton.dataset.variantId = variant.id;
+        variantButton.addEventListener('click', function() {
+          // Remove selected class from all buttons
+          document.querySelectorAll('.variant-color').forEach(btn => btn.classList.remove('selected-variant'));
+          // Add selected class to the clicked button
+          variantButton.classList.add('selected-variant');
+        });
+        variantsContainer.appendChild(variantButton);
+      });
+
+      // Set the product ID for the Add to Cart button
+      document.getElementById('add-to-cart').setAttribute('data-product-id', product.id);
+      popup.style.display = 'block';
+    });
+  });
+
+  closeBtn.addEventListener('click', function() {
+    popup.style.display = 'none';
+  });
+
+  // Add to Cart logic
+  document.getElementById('add-to-cart').addEventListener('click', function() {
+    const productId = this.getAttribute('data-product-id');
+    const selectedVariant = document.querySelector('.selected-variant');
+    const selectedSize = document.getElementById('size-select').value;
+
+    if (!selectedVariant ) {
+      alert('Please select a color  and size variant.');
+      return;
+    }
+
+    const variantId = selectedVariant.dataset.variantId;
+    const variantOption = selectedVariant.innerText;
+
+    alert(`${productId} in ${variantOption} size ${selectedSize} added to cart`);
+    //  adding to cart here
+  });
+});
+{% endjavascript %}

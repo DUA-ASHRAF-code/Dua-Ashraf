@@ -1,0 +1,106 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.button,
+.input,
+.optgroup,
+.select,
+.textarea {
+  margin: 0;
+  padding: 0;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.hr,
+.p {
+  margin: 0;
+}
+
+.__dhiwise {
+  [type="text"],
+  input:where(:not([type])),
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple] {
+    appearance: none;
+    background-color: transparent;
+    border-color: unset;
+    border-width: 0;
+    border-radius: unset;
+    padding: unset;
+    font-size: unset;
+    line-height: unset;
+    color: inherit;
+  }
+  input:focus-visible,
+  [multiple]:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.__dhiwise.content-column__grid {
+  width: 100%;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  
+  @media only screen and (max-width: 1050px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.__dhiwise .stack-plus__image {
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.popup-content {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+}
+
+.popup-variants button {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.popup-variants button.selected-variant {
+  border-color: #000;
+}
+.popup-variants button.selected-variant {
+  border-color: #000;
+  background-color: #a8f1ec; /* Change background to indicate selection */
+  color: #ffffff; 
+  transform: scale(1.05); /* Slightly enlarge the button */
+  transition: all 0.3s ease; /* Smooth transition */
+}

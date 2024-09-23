@@ -1,0 +1,74 @@
+.__dhiwise button,
+.__dhiwise input,
+.__dhiwise optgroup,
+.__dhiwise select,
+.__dhiwise textarea {
+  margin: 0;
+  padding: 0;
+}
+
+.__dhiwise h1,
+.__dhiwise h2,
+.__dhiwise h3,
+.__dhiwise h4,
+.__dhiwise h5,
+.__dhiwise h6,
+.__dhiwise hr,
+.__dhiwise p {
+  margin: 0;
+}
+
+.__dhiwise {
+  [type="text"],
+  input:where(:not([type])),
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple] {
+    appearance: none;
+    background-color: transparent;
+    border-color: unset;
+    border-width: 0;
+    border-radius: unset;
+    padding: unset;
+    font-size: unset;
+    line-height: unset;
+    color: inherit;
+  }
+  input:focus-visible,
+  [multiple]:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.__dhiwise.section__row {
+  padding-left: 56px;
+  padding-right: 56px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-width: 1340px;
+  margin-left: auto;
+  margin-right: auto;
+  @media only screen and (max-width: 1050px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.__dhiwise .section__description {
+  color: #000000 !important;
+  font-size: 16px;
+  font-weight: 400;
+}
