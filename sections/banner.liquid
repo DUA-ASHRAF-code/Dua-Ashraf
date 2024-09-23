@@ -1,0 +1,67 @@
+
+{{ 'banner.css' | asset_url | stylesheet_tag }}
+
+<div class="banner __dhiwise">
+  <div class="content-section">
+    <div class="content-section__column">
+      <p class="content-section__title">
+        {{ section.settings.thegiftguide }}
+      </p>
+      <p class="content-section__description">
+        {{ section.settings.description }}
+      </p>
+      <button class="flex-row-center-center content-section__button" id="shopNowButton">
+        <span>
+          {{ section.settings.shop_now_text }}
+        </span>
+        
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const shopNowButton = document.getElementById('shopNowButton');
+    shopNowButton.addEventListener('click', function() {
+      const collectionUrl = '{{ section.settings.collection.url }}';
+      if (collectionUrl) {
+        window.location.href = collectionUrl;
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.banner.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "thegiftguide",
+      "label": "t:sections.banner.settings.thegiftguide",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:sections.banner.settings.description",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
+    },
+    {
+      "type": "text",
+      "id": "shop_now_text",
+      "label": "Shop Now Button Text",
+      "default": "Shop Now"
+    },
+    
+  ],
+  "presets": [
+    {
+      "name": "t:sections.banner.presets.name"
+    }
+  ]
+}
+{% endschema %}

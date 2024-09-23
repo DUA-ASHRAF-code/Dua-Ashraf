@@ -1,0 +1,57 @@
+{{ 'banner2.css' | asset_url | stylesheet_tag }}
+
+<div class="section__row __dhiwise">
+  <p class="section__description">
+    {{ section.settings.text }}
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.banner2.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:sections.banner2.settings.text.label",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:sections.banner2.settings.background_color.label",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:sections.banner2.settings.text_color.label",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.banner2.presets.name"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.section__row {
+  background-color: {{ section.settings.background_color }};
+  padding: 10px 0;
+  text-align: center;
+}
+
+.section__description {
+  color: {{ section.settings.text_color }};
+  margin: 0;
+  font-size: 14px;
+}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

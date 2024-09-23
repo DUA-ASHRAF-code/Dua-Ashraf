@@ -1,0 +1,21 @@
+{{ 'popup.css' | asset_url | stylesheet_tag }}
+
+<div id="product-popup" class="popup hidden">
+  <div class="popup-content">
+    <span class="close">&times;</span>
+    <div class="popup-image">
+      <img id="popup-product-image" src="" alt="Product Image" />
+    </div>
+    <h2 id="popup-product-name"></h2>
+    <p id="popup-product-price"></p>
+    <p id="popup-product-description"></p>
+    <div id="popup-product-variants">
+      <label for="color">Color:</label>
+      <select id="popup-product-color"></select>
+
+      <label for="size">Size:</label>
+      <select id="popup-product-size"></select>
+    </div>
+    <button id="add-to-cart" class="btn">Add to Cart</button>
+  </div>
+</div>
